@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export function MSWProvider({
   children,
@@ -8,8 +8,14 @@ export function MSWProvider({
   children: React.ReactNode;
 }) {
   const [ready, setReady] = useState(false);
+  const startedRef = useRef(false);
 
   useEffect(() => {
+    if (startedRef.current) {
+      return;
+    }
+
+    startedRef.current = true;
     async function enableMocking() {
       const { worker } = await import('@/mocks/browser');
 

@@ -15,3 +15,13 @@ export interface Class {
   name: string;
   studentIds: string[];
 }
+
+
+export interface ClassesResponse {
+  data: Class[];
+}
+
+export interface StudentsResponse {
+  data: Student[];
+  total: number;
+}
